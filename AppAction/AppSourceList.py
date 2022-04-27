@@ -20,6 +20,22 @@ def AppSourceList(self):
     self.driver.find_element_by_id("com.kachexiongdi.trucker:id/et_content").send_keys("北京测试")
     # 点击搜索按钮
     self.driver.find_element_by_id("com.kachexiongdi.trucker:id/tv_search").click()
+    # 勾选常跑路线
+    self.driver.find_element_by_id("com.kachexiongdi.trucker:id/rb_often_run_route").click()
+    # 勾选车队单
+    self.driver.find_element_by_id("com.kachexiongdi.trucker:id/rb_orientation").click()
+    # 点击排序按钮
+    self.driver.find_element_by_id("com.kachexiongdi.trucker:id/tv_sort").click()
+    # 点击距我最近按钮
+    self.driver.find_element_by_xpath("//*[@text='距我最近' and contains(@resource-id, "
+                                      "'com.kachexiongdi.trucker:id/tv_item_title')]").click()
+    sleep(1)
+    # 再次点击排序按钮
+    self.driver.find_element_by_id("com.kachexiongdi.trucker:id/tv_sort").click()
+    # 点击价格最高按钮
+    self.driver.find_element_by_xpath("//*[@text='价格最高' and contains(@resource-id, "
+                                      "'com.kachexiongdi.trucker:id/tv_item_title')]").click()
+    sleep(1)
     # 点击第一个货源，会进入货源详情页
     self.driver.find_element_by_xpath(
         '//*[@resource-id="com.kachexiongdi.trucker:id/tv_company" and @index="0"]').click()

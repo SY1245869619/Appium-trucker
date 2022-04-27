@@ -8,7 +8,7 @@
 """
 from time import sleep
 from appium import webdriver
-from AppAction import GetIntoApp, AppSignIn, AppNews, AppSourceList
+from AppAction import GetIntoApp, AppSignIn, AppNews, AppSourceList, AppWaybillDetails
 
 
 class TestDemo:
@@ -46,57 +46,11 @@ class TestDemo:
     def test_AppSourceList(self):
         AppSourceList.AppSourceList(self)
 
+    # App运单详情页操作集测试用例
+    def test_AppWaybillDetails(self):
+        AppWaybillDetails.AppWaybillDetails(self)
+
     def test_demo1(self):
-        # 点击抢单按钮
-        self.driver.find_element_by_xpath(
-            "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android"
-            ".widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout"
-            "/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup"
-            "/android.view.ViewGroup[3]/android.view.ViewGroup/android.widget.TextView").click()
-        sleep(2)
-        # 选择车辆点击确认车辆
-        self.driver.find_element_by_id("com.kachexiongdi.trucker:id/btn_confirm").click()
-        # 核对订单弹窗点击取消按钮
-        self.driver.find_element_by_id("com.kachexiongdi.trucker:id/btn_dialog_cancel").click()
-        # 再次点击抢单按钮
-        self.driver.find_element_by_xpath(
-            "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android"
-            ".widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout"
-            "/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup"
-            "/android.view.ViewGroup[3]/android.view.ViewGroup/android.widget.TextView").click()
-        sleep(2)
-        # 选择车辆点击确认车辆
-        self.driver.find_element_by_id("com.kachexiongdi.trucker:id/btn_confirm").click()
-        # 核对订单弹窗点击确认按钮
-        self.driver.find_element_by_id("com.kachexiongdi.trucker:id/btn_dialog_confirm").click()
-        # 抢单成功提醒弹窗点击我知道了
-        self.driver.find_element_by_id("com.kachexiongdi.trucker:id/btn_know").click()
-        sleep(1)
-        # 上传磅单引导图点击任意位置
-        self.driver.find_element_by_id("com.kachexiongdi.trucker:id/iv_guide").click()
-        sleep(2)
-        # 点击返回按钮
-        self.driver.find_element_by_xpath("//*[@text='运单详情' and contains(@class, "
-                                          "'android.widget.TextView')]/../android.view.ViewGroup").click()
-        # 点击返回按钮
-        self.driver.find_element_by_xpath("//*[@text='货源详情' and contains(@class, "
-                                          "'android.widget.TextView')]/../android.view.ViewGroup").click()
-        # 勾选常跑路线
-        self.driver.find_element_by_id("com.kachexiongdi.trucker:id/rb_often_run_route").click()
-        # 勾选车队单
-        self.driver.find_element_by_id("com.kachexiongdi.trucker:id/rb_orientation").click()
-        # 点击排序按钮
-        self.driver.find_element_by_id("com.kachexiongdi.trucker:id/tv_sort").click()
-        # 点击距我最近按钮
-        self.driver.find_element_by_xpath("//*[@text='距我最近' and contains(@resource-id, "
-                                          "'com.kachexiongdi.trucker:id/tv_item_title')]").click()
-        sleep(1)
-        # 再次点击排序按钮
-        self.driver.find_element_by_id("com.kachexiongdi.trucker:id/tv_sort").click()
-        # 点击价格最高按钮
-        self.driver.find_element_by_xpath("//*[@text='价格最高' and contains(@resource-id, "
-                                          "'com.kachexiongdi.trucker:id/tv_item_title')]").click()
-        sleep(1)
         # 切换到运单页
         # 真机
         self.driver.find_element_by_xpath("//*[@index='1' and contains(@class, "
