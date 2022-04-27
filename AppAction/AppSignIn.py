@@ -9,7 +9,7 @@
 from time import sleep
 
 
-# App的登录
+# App的登录操作集合
 def AppSignIn(self):
     # 点击“登录/注册”按钮
     self.driver.find_element_by_id("com.kachexiongdi.trucker:id/user_center_enter").click()

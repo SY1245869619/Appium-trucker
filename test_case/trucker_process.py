@@ -8,7 +8,7 @@
 """
 from time import sleep
 from appium import webdriver
-from AppAction import GetIntoApp, AppSignIn, AppNews
+from AppAction import GetIntoApp, AppSignIn, AppNews, AppSourceList
 
 
 class TestDemo:
@@ -26,36 +26,27 @@ class TestDemo:
     def teardown_class(self):
         self.driver.quit()
 
+    # 初始进入app的操作集测试用例
     def test_GetIntoApp(self):
         try:
-            # 初始进入app的操作集
             GetIntoApp.GetIntoApp(self)
             print("初始进入App的操作异常")
         except:
             print("初始进入App的操作异常")
 
+    # App登录功能的操作集测试用例
     def test_AppSignIn(self):
-        # App登录功能的操作集
         AppSignIn.AppSignIn(self)
 
+    # App消息功能的操作集测试用例
     def test_AppNews(self):
-        # App消息功能的操作集
         AppNews.AppNews(self)
-    def test_demo4(self):
-        # 点击联系客服按钮
-        self.driver.find_element_by_id("com.kachexiongdi.trucker:id/iv_toolbar_customer").click()
-        # 点击取消按钮
-        self.driver.find_element_by_id("com.kachexiongdi.trucker:id/btn_dialog_cancel").click()
-        # 点击发布企业/专线号搜索框
-        self.driver.find_element_by_id("com.kachexiongdi.trucker:id/et_content").click()
-        # 输入发布企业信息
-        self.driver.find_element_by_id("com.kachexiongdi.trucker:id/et_content").send_keys("北京测试")
-        # 点击搜索按钮
-        self.driver.find_element_by_id("com.kachexiongdi.trucker:id/tv_search").click()
-        # 点击第一个货源，会进入货源详情页
-        self.driver.find_element_by_xpath(
-            '//*[@resource-id="com.kachexiongdi.trucker:id/tv_company" and @index="0"]').click()
-        sleep(3)
+
+    # App货源列表的操作集测试用例
+    def test_AppSourceList(self):
+        AppSourceList.AppSourceList(self)
+
+    def test_demo1(self):
         # 点击抢单按钮
         self.driver.find_element_by_xpath(
             "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android"

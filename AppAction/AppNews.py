@@ -8,7 +8,7 @@
 """
 from time import sleep
 
-
+# App的消息功能操作集合
 def AppNews(self):
     # 点击货源页
     # 真机

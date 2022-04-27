@@ -6,10 +6,11 @@
 @file: GetIntoApp.py
 @time: 2022/4/26 17:36
 """
-# 初始进入App
+
 from PublicAction import ActionPublic
 
 
+# 初始进入App的操作集合
 def GetIntoApp(self):
     self.driver.implicitly_wait(5)
     try:
@@ -38,4 +39,3 @@ def GetIntoApp(self):
     # 模拟器
     # self.driver.find_element_by_xpath("//*[@text='我的' and contains(@resource-id, "
     #                                   "'com.kachexiongdi.trucker:id/tv_tab_name')]").click()
-
