@@ -3,7 +3,7 @@
 @author: 沈缘
 @contact: 1245869619@qq.com
 @software: PyCharm
-@file: trucker_process.py
+@file: test_trucker_process.py
 @time: 2021/10/6 22:02
 """
 from time import sleep
@@ -30,7 +30,7 @@ class TestDemo:
     def test_GetIntoApp(self):
         try:
             GetIntoApp.GetIntoApp(self)
-            print("初始进入App的操作异常")
+            print("初始进入App的操作正常")
         except:
             print("初始进入App的操作异常")
 
