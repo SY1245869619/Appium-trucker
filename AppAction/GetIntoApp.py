@@ -6,6 +6,7 @@
 @file: GetIntoApp.py
 @time: 2022/4/26 17:36
 """
+from time import sleep
 
 from PublicAction import ActionPublic
 
@@ -19,6 +20,17 @@ def GetIntoApp(self):
         print("\n存在权限弹窗，点击允许\n")
     except AssertionError:
         print("不存在权限弹窗\n")
+    # 点击第一个协议
+    self.driver.find_element_by_id("com.kachexiongdi.trucker:id/owner_auth_rule").click()
+    sleep(2)
+    # 调用系统自带返回按钮
+    self.driver.keyevent('4')
+    # 点击第二个协议
+    self.driver.find_element_by_id("com.kachexiongdi.trucker:id/owner_privacy_policy").click()
+    sleep(2)
+    # 调用系统自带返回按钮
+    self.driver.keyevent('4')
+    # 协议弹窗点击确定按钮
     self.driver.find_element_by_id("com.kachexiongdi.trucker:id/btn_dialog_confirm").click()
     # 启动图滑动2次
     ActionPublic.swipe_left(self.driver)
@@ -27,9 +39,9 @@ def GetIntoApp(self):
     # TouchAction(self.driver).press(x=1028, y=1058).move_to(x=176, y=1058).release().perform()
     try:
         assert len(self.driver.find_elements_by_id("com.kachexiongdi.trucker:id/b_enter")) == 1
-        print("存在立即体验按钮，测试通过\n")
+        print("存在立即体验按钮，可以向下\n")
     except AssertionError:
-        print("测试不通过\n")
+        print("无法点击立即体验按钮\n")
     # 点击立即体验按钮
     self.driver.find_element_by_id("com.kachexiongdi.trucker:id/b_enter").click()
     # 点击“我的”

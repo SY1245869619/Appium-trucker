@@ -20,6 +20,7 @@ def AppSourceList(self):
     self.driver.find_element_by_id("com.kachexiongdi.trucker:id/et_content").send_keys("北京测试")
     # 点击搜索按钮
     self.driver.find_element_by_id("com.kachexiongdi.trucker:id/tv_search").click()
+    sleep(4)
     # 勾选常跑路线
     self.driver.find_element_by_id("com.kachexiongdi.trucker:id/rb_often_run_route").click()
     # 勾选车队单

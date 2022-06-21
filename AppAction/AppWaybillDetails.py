@@ -8,29 +8,33 @@
 """
 from time import sleep
 
+from appium.webdriver.common.touch_action import TouchAction
+
+from PublicAction import ActionPublic
 
 # App运单详情页操作集合
 def AppWaybillDetails(self):
-    # 点击抢单按钮
-    self.driver.find_element_by_xpath(
-        "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android"
-        ".widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout"
-        "/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup"
-        "/android.view.ViewGroup[3]/android.view.ViewGroup/android.widget.TextView").click()
     sleep(2)
+    # 向上滑动
+    ActionPublic.swipe_up(self.driver)
+    # TouchAction(self.driver).press(x=589, y=1836).move_to(x=600, y=1268).release().perform()
+    # 勾选货物运输协议
+    self.driver.find_element_by_xpath("//*[@index='24' and contains(@class, "
+                                      "'android.widget.ImageView')]").click()
+    # 点击抢单按钮
+    self.driver.find_element_by_accessibility_id("抢单").click()
+    sleep(6)
     # 选择车辆点击确认车辆
     self.driver.find_element_by_id("com.kachexiongdi.trucker:id/btn_confirm").click()
     # 核对订单弹窗点击取消按钮
     self.driver.find_element_by_id("com.kachexiongdi.trucker:id/btn_dialog_cancel").click()
     # 再次点击抢单按钮
-    self.driver.find_element_by_xpath(
-        "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android"
-        ".widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout"
-        "/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup"
-        "/android.view.ViewGroup[3]/android.view.ViewGroup/android.widget.TextView").click()
-    sleep(2)
+    self.driver.find_element_by_accessibility_id("抢单").click()
+    sleep(6)
     # 选择车辆点击确认车辆
     self.driver.find_element_by_id("com.kachexiongdi.trucker:id/btn_confirm").click()
+    # 核对弹窗勾选协议
+    self.driver.find_element_by_id("com.kachexiongdi.trucker:id/checkbox").click()
     # 核对订单弹窗点击确认按钮
     self.driver.find_element_by_id("com.kachexiongdi.trucker:id/btn_dialog_confirm").click()
     # 抢单成功提醒弹窗点击我知道了
@@ -40,9 +44,13 @@ def AppWaybillDetails(self):
     self.driver.find_element_by_id("com.kachexiongdi.trucker:id/iv_guide").click()
     sleep(2)
     # 点击返回按钮
-    self.driver.find_element_by_xpath("//*[@text='运单详情' and contains(@class, "
-                                      "'android.widget.TextView')]/../android.view.ViewGroup").click()
+    # 调用系统自带返回按钮
+    self.driver.keyevent('4')
+    # self.driver.find_element_by_xpath("//*[@text='运单详情' and contains(@class, "
+    #                                   "'android.widget.TextView')]/../android.view.ViewGroup").click()
     # 点击返回按钮
-    self.driver.find_element_by_xpath("//*[@text='货源详情' and contains(@class, "
-                                      "'android.widget.TextView')]/../android.view.ViewGroup").click()
+    # 调用系统自带返回按钮
+    self.driver.keyevent('4')
+    # self.driver.find_element_by_xpath("//*[@text='货源详情' and contains(@class, "
+    #                                   "'android.widget.TextView')]/../android.view.ViewGroup").click()
     sleep(2)

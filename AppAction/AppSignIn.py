@@ -29,7 +29,7 @@ def AppSignIn(self):
     self.driver.find_element_by_id("com.kachexiongdi.trucker:id/btn_login").click()
     # 再次点击同意勾选协议
     self.driver.find_element_by_id("com.kachexiongdi.trucker:id/rb_auth_rule").click()
-    sleep(1)
+    sleep(2)
     # 点击登录注册按钮
     self.driver.find_element_by_id("com.kachexiongdi.trucker:id/btn_login").click()
     sleep(2)

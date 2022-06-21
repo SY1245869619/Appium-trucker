@@ -12,7 +12,7 @@ from py.xml import html
 
 def pytest_configure(config):  # 修改Environment展示信息
     # 添加项目名称
-    config._metadata["项目名称"] = "HTML封装测试"
+    config._metadata["项目名称"] = "方向物流司机端"
     # 删除JAVA_HOME
     config._metadata.pop("JAVA_HOME")
     # 删除Plugins

@@ -8,15 +8,18 @@
 """
 from time import sleep
 from appium import webdriver
+from PublicAction import Appium_Start
 from AppAction import GetIntoApp, AppSignIn, AppNews, AppSourceList, AppWaybillDetails
 
 
 class TestDemo:
+    Appium_Start.appium_start('0.0.0.0', 4723)
+
     def setup_class(self):
         caps = {}
         caps["platformName"] = "Android"
         caps["deviceName"] = "fxwl"
-        caps["app"] = "E:\\文件\\Appiumtest\\trucker-daily-5.1.2-512-debug-FX.apk"
+        caps["app"] = "E:\\文件\\Appiumtest\\trucker-daily-5.1.3-513-debug-FX-1.apk"
         caps["autoGrantPermissions"] = True
         caps["ensureWebviewsHavePages"] = True
         self.driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
@@ -56,38 +59,46 @@ class TestDemo:
         self.driver.find_element_by_xpath("//*[@index='1' and contains(@class, "
                                           "'android.widget.RelativeLayout')]").click()
         # 进入运单详情页
-        self.driver.find_element_by_xpath(
-            "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android"
-            ".widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout"
-            "/android.widget.RelativeLayout/androidx.viewpager.widget.ViewPager/android.widget.RelativeLayout/android"
-            ".widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget"
-            ".LinearLayout/androidx.viewpager.widget.ViewPager/android.widget.RelativeLayout/android.widget"
-            ".RelativeLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.widget"
-            ".LinearLayout[1]").click()
+        self.driver.find_element_by_xpath("//*[@text='待装货' and contains(@resource-id, "
+                                          "'com.kachexiongdi.trucker:id/tv_order_status')]").click()
+        # self.driver.find_element_by_xpath(
+        #     "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android"
+        #     ".widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout"
+        #     "/android.widget.RelativeLayout/androidx.viewpager.widget.ViewPager/android.widget.RelativeLayout/android"
+        #     ".widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget"
+        #     ".LinearLayout/androidx.viewpager.widget.ViewPager/android.widget.RelativeLayout/android.widget"
+        #     ".RelativeLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.widget"
+        #     ".LinearLayout[1]").click()
         # 点击过磅二维码按钮
-        self.driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android"
-                                          ".widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout"
-                                          "/android.widget.LinearLayout/android.widget.LinearLayout/android.widget"
-                                          ".FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android"
-                                          ".view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup["
-                                          "1]/android.widget.TextView").click()
+        self.driver.find_element_by_accessibility_id("过磅二维码").click()
+        sleep(2)
+        # self.driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android"
+        #                                   ".widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout"
+        #                                   "/android.widget.LinearLayout/android.widget.LinearLayout/android.widget"
+        #                                   ".FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android"
+        #                                   ".view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup["
+        #                                   "1]/android.widget.TextView").click()
         # 点击返回按钮
-        self.driver.find_element_by_xpath("//*[@text='过磅二维码' and contains(@resource-id, "
-                                          "'com.kachexiongdi.trucker:id/tb_center_title')]/../android.widget"
-                                          ".ImageButton").click()
+        # 调用系统自带返回按钮
+        self.driver.keyevent(4)
+        # self.driver.find_element_by_xpath("//*[@text='过磅二维码' and contains(@resource-id, "
+        #                                   "'com.kachexiongdi.trucker:id/tb_center_title')]/../android.widget"
+        #                                   ".ImageButton").click()
         # 点击取消运单
-        self.driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android"
-                                          ".widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout"
-                                          "/android.widget.LinearLayout/android.widget.LinearLayout/android.widget"
-                                          ".FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android"
-                                          ".view.ViewGroup/android.view.ViewGroup[1]/android.widget.TextView["
-                                          "2]").click()
+        self.driver.find_element_by_accessibility_id(" 取消运单").click()
+        # self.driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android"
+        #                                   ".widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout"
+        #                                   "/android.widget.LinearLayout/android.widget.LinearLayout/android.widget"
+        #                                   ".FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android"
+        #                                   ".view.ViewGroup/android.view.ViewGroup[1]/android.widget.TextView["
+        #                                   "2]").click()
         # 点击确定按钮
-        self.driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android"
-                                          ".widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup"
-                                          "/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup"
-                                          "/android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView["
-                                          "3]").click()
+        self.driver.find_element_by_accessibility_id("确认").click()
+        # self.driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android"
+        #                                   ".widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup"
+        #                                   "/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup"
+        #                                   "/android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView["
+        #                                   "3]").click()
         # 模拟器
         # self.driver.find_element_by_xpath("//*[@text='运单' and contains(@resource-id, "
         #                                   "'com.kachexiongdi.trucker:id/tv_tab_name')]").click()
@@ -113,21 +124,25 @@ class TestDemo:
                                           "'android.widget.LinearLayout')]").click()
         sleep(3)
         # 点击返回按钮
-        self.driver.find_element_by_xpath(
-            "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android"
-            ".widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout"
-            "/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup"
-            "/android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.ImageView").click()
+        # 调用系统自带返回按钮
+        self.driver.keyevent(4)
+        # self.driver.find_element_by_xpath(
+        #     "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android"
+        #     ".widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout"
+        #     "/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup"
+        #     "/android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.ImageView").click()
         # self.driver.find_element_by_xpath("//*[@text='运单详情' and contains(@class, "
         #                                   "'android.widget.TextView')]/../android.widget"
         #                                   ".ImageButton").click()
         # 点击“我的”页
         # 真机
-        self.driver.find_element_by_xpath(
-            "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android"
-            ".widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout"
-            "/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget"
-            ".LinearLayout/android.widget.RelativeLayout[3]/android.widget.LinearLayout").click()
+        self.driver.find_element_by_xpath("//*[@index='2' and contains(@class, "
+                                          "'android.widget.RelativeLayout')]").click()
+        # self.driver.find_element_by_xpath(
+        #     "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android"
+        #     ".widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout"
+        #     "/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget"
+        #     ".LinearLayout/android.widget.RelativeLayout[3]/android.widget.LinearLayout").click()
         # 模拟器
         # self.driver.find_element_by_xpath("//*[@text='我的' and contains(@resource-id, "
         #                                   "'com.kachexiongdi.trucker:id/tv_tab_name')]").click()
@@ -141,9 +156,11 @@ class TestDemo:
         # 点击提现栏，进入提现页
         self.driver.find_element_by_id("com.kachexiongdi.trucker:id/item_withdrawal").click()
         # 点击返回按钮
-        self.driver.find_element_by_xpath("//*[@text='提现' and contains(@resource-id, "
-                                          "'com.kachexiongdi.trucker:id/tb_center_title')]/../android.widget"
-                                          ".ImageButton").click()
+        # 调用系统自带返回按钮
+        self.driver.keyevent(4)
+        # self.driver.find_element_by_xpath("//*[@text='提现' and contains(@resource-id, "
+        #                                   "'com.kachexiongdi.trucker:id/tb_center_title')]/../android.widget"
+        #                                   ".ImageButton").click()
         # self.driver.find_element_by_xpath(
         #     "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android"
         #     ".widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout"
@@ -153,9 +170,11 @@ class TestDemo:
         # 点击银行卡栏，进入我的银行卡页
         self.driver.find_element_by_id("com.kachexiongdi.trucker:id/item_bankcard").click()
         # 点击返回按钮
-        self.driver.find_element_by_xpath("//*[@text='我的银行卡' and contains(@resource-id, "
-                                          "'com.kachexiongdi.trucker:id/tb_center_title')]/../android.widget"
-                                          ".ImageButton").click()
+        # 调用系统自带返回按钮
+        self.driver.keyevent(4)
+        # self.driver.find_element_by_xpath("//*[@text='我的银行卡' and contains(@resource-id, "
+        #                                   "'com.kachexiongdi.trucker:id/tb_center_title')]/../android.widget"
+        #                                   ".ImageButton").click()
         # self.driver.find_element_by_xpath(
         #     "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android"
         #     ".widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout"
@@ -165,9 +184,11 @@ class TestDemo:
         # 点击账单按钮，进入账单页
         self.driver.find_element_by_id("com.kachexiongdi.trucker:id/tb_right_tv").click()
         # 点击返回按钮
-        self.driver.find_element_by_xpath("//*[@text='我的账单' and contains(@resource-id, "
-                                          "'com.kachexiongdi.trucker:id/tb_center_title')]/../android.widget"
-                                          ".ImageButton").click()
+        # 调用系统自带返回按钮
+        self.driver.keyevent(4)
+        # self.driver.find_element_by_xpath("//*[@text='我的账单' and contains(@resource-id, "
+        #                                   "'com.kachexiongdi.trucker:id/tb_center_title')]/../android.widget"
+        #                                   ".ImageButton").click()
         # self.driver.find_element_by_xpath(
         #     "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android"
         #     ".widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout"
@@ -231,16 +252,6 @@ class TestDemo:
         #     ".ImageButton").click()
         # 点击返回按钮
         self.driver.find_element_by_id("com.kachexiongdi.trucker:id/iv_left_back").click()
-        # 点击优惠加油按钮
-        self.driver.find_element_by_id("com.kachexiongdi.trucker:id/tv_user_center_oil").click()
-        sleep(3)
-        # 点击返回按钮
-        self.driver.find_element_by_xpath(
-            "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android"
-            ".widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup"
-            "/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android"
-            ".view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup["
-            "2]/android.widget.ImageView").click()
         # 点击运费代收按钮
         self.driver.find_element_by_xpath("//*[@text='运费代收' and contains(@class, "
                                           "'android.widget.TextView')]").click()
