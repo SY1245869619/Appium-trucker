@@ -45,22 +45,22 @@ class TestDemo:
         # 增加隐式等待
         self.driver.implicitly_wait(10)
         # 登录由验证码登录切换为密码登录
-        el1 = self.driver.find_element_by_id("com.kachexiongdi.trucker:id/tv_password_login")
+        el1 = self.driver.find_element("id","com.kachexiongdi.trucker:id/tv_password_login")
         el1.click()
         # 输入手机号
-        el2 = self.driver.find_element_by_id("com.kachexiongdi.trucker:id/et_phone")
+        el2 = self.driver.find_element("id","com.kachexiongdi.trucker:id/et_phone")
         el2.click()
         el2.send_keys("13171521557")
         # 输入密码
-        el3 = self.driver.find_element_by_id("com.kachexiongdi.trucker:id/et_verify_code")
+        el3 = self.driver.find_element("id","com.kachexiongdi.trucker:id/et_verify_code")
         el3.click()
         el3.send_keys("cs123456")
         # 点击登录
-        el4 = self.driver.find_element_by_id("com.kachexiongdi.trucker:id/btn_login")
+        el4 = self.driver.find_element("id","com.kachexiongdi.trucker:id/btn_login")
         el4.click()
 
         self.driver.quit()
         assert len(self.driver.find_elements_by_xpath('//*[@text="Edit"]')) ==1
-        assert "这个文本是否存在" in self.driver.find_element_by_xpath("//*[@class='android.widget.Toast']").text
+        assert "这个文本是否存在" in self.driver.find_element("xpath","//*[@class='android.widget.Toast']").text
     def teardown(self):
         self.driver.quit()

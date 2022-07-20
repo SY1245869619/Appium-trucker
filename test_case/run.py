@@ -17,7 +17,7 @@ def run_main():
     # html报告命名
     name_html = time.strftime('%Y_%m_%d_%H', time.localtime(time.time())) + '.html'
     # html报告输出路径——参考具体项目路径
-    report_path = os.path.join(r'D:\Appium-trucker\test_case', name_html)
+    report_path = os.path.join(r'Resources\Appium-trucker\test_case', name_html)
     # 通过python代码执行pytest命令行方式
     pytest.main(['-v', '--html={}'.format(report_path), '--self-contained-html', test_case])
 
