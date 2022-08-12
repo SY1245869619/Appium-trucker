@@ -7,7 +7,7 @@
 @time: 2022/4/26 17:36
 """
 from time import sleep
-
+from appium.webdriver.common.appiumby import AppiumBy
 from PublicAction import ActionPublic
 
 
@@ -16,15 +16,17 @@ def GetIntoApp(self):
     try:
         self.driver.implicitly_wait(5)
         # 点击第一个协议
-        self.driver.find_element("id", "com.kachexiongdi.trucker:id/owner_auth_rule").click()
+        # 使用Appium的定位策略
+        self.driver.find_element(AppiumBy.ID, "com.kachexiongdi.trucker:id/owner_auth_rule").click()
         sleep(2)
         # 调用系统自带返回按钮
-        self.driver.keyevent('4')
+        self.driver.back()
+        # self.driver.keyevent('4')
         # 点击第二个协议
         self.driver.find_element("id", "com.kachexiongdi.trucker:id/owner_privacy_policy").click()
         sleep(2)
         # 调用系统自带返回按钮
-        self.driver.keyevent('4')
+        self.driver.back()
         # 协议弹窗点击确定按钮
         self.driver.find_element("id", "com.kachexiongdi.trucker:id/btn_dialog_confirm").click()
         try:
@@ -37,9 +39,6 @@ def GetIntoApp(self):
             print("不存在权限弹窗\n")
         # 启动图滑动1次
         ActionPublic.swipe_left(self.driver)
-        # ActionPublic.swipe_left(self.driver)
-        # TouchAction(self.driver).press(x=1058, y=1079).move_to(x=154, y=1066).release().perform()
-        # TouchAction(self.driver).press(x=1028, y=1058).move_to(x=176, y=1058).release().perform()
         # 点击立即体验按钮
         try:
             assert len(self.driver.find_elements("id", "com.kachexiongdi.trucker:id/b_enter")) == 1
@@ -47,12 +46,12 @@ def GetIntoApp(self):
             print("存在立即体验按钮，可以向下\n")
         except AssertionError:
             print("无法点击立即体验按钮\n")
-        sleep(2)
+        sleep(1)
         try:
-            assert len(self.driver.find_elements("id",
-                                                 "com.android.permissioncontroller:id/permission_allow_always_button")) == 1
-            self.driver.find_element("id",
-                                     "com.android.permissioncontroller:id/permission_allow_always_button").click()  # 协议弹窗点击同意
+            assert len(self.driver.find_elements("id","com.android.permissioncontroller:id"
+                                                      "/permission_allow_always_button")) == 1
+            # 协议弹窗点击同意
+            self.driver.find_element("id","com.android.permissioncontroller:id/permission_allow_always_button").click()
             print("\n存在权限弹窗，点击始终允许\n")
         except AssertionError:
             print("不存在权限弹窗\n")

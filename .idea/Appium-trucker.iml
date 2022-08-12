@@ -11,6 +11,17 @@
   <component name="PackageRequirementsSettings">
     <option name="requirementsPath" value="" />
   </component>
+  <component name="PyNamespacePackagesService">
+    <option name="namespacePackageFolders">
+      <list>
+        <option value="$MODULE_DIR$/AppAction" />
+        <option value="$MODULE_DIR$/PublicAction" />
+        <option value="$MODULE_DIR$/Pytest-Html" />
+        <option value="$MODULE_DIR$/test_case" />
+        <option value="$MODULE_DIR$/ScreenShots" />
+      </list>
+    </option>
+  </component>
   <component name="TestRunnerService">
     <option name="PROJECT_TEST_RUNNER" value="py.test" />
   </component>

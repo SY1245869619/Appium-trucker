@@ -13,76 +13,57 @@ from time import sleep
 def AppNews(self):
     # 点击货源页
     # 真机
-    self.driver.find_element("xpath",
-        "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android"
-        ".widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout"
-        "/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget"
-        ".LinearLayout/android.widget.RelativeLayout[1]/android.widget.LinearLayout").click()
-    # # 模拟器
-    # self.driver.find_element("xpath","//*[@text='货源' and contains(@resource-id, "
-    #                                   "'com.kachexiongdi.trucker:id/tv_tab_name')]").click()
+    self.driver.find_element("xpath", "//*[@index='0' and contains(@resource-id, "
+                                      "'com.kachexiongdi.trucker:id/tsiv_tab_icon')]").click()
     sleep(2)
     # 点击消息按钮
-    self.driver.find_element("id","com.kachexiongdi.trucker:id/iv_toolbar_msg").click()
+    self.driver.find_element("id", "com.kachexiongdi.trucker:id/iv_toolbar_msg").click()
     sleep(3)
     # 点击运单消息
-    self.driver.find_element("xpath","//*[@text='运单消息' and contains(@resource-id, "
+    self.driver.find_element("xpath", "//*[@text='运单消息' and contains(@resource-id, "
                                       "'com.kachexiongdi.trucker:id/tv_my_news')]").click()
-    # 点击第一个运单消息
-    self.driver.find_element("xpath","//*[@index='0' and contains(@resource-id, "
+    # 点击第一个运单消息,前置条件第一个运单不为待装货
+    self.driver.find_element("xpath", "//*[@index='0' and contains(@resource-id, "
                                       "'com.kachexiongdi.trucker:id/rl_status')]").click()
     sleep(1)
     # 点击返回按钮
-    self.driver.find_element("xpath",
-        "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android"
-        ".widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view"
-        ".View/android.widget.Button").click()
-
+    self.driver.back()
     # 点击设置按钮
-    self.driver.find_element("id","com.kachexiongdi.trucker:id/tb_right_tv").click()
+    self.driver.find_element("id", "com.kachexiongdi.trucker:id/tb_right_tv").click()
     # 点击第一个按钮，关闭所有此类消息开关
-    self.driver.find_element("id","com.kachexiongdi.trucker:id/off_newmsg").click()
+    self.driver.find_element("id", "com.kachexiongdi.trucker:id/off_newmsg").click()
     # 点击第一个按钮，打开第一个开关
-    self.driver.find_element("id","com.kachexiongdi.trucker:id/off_newmsg").click()
+    self.driver.find_element("id", "com.kachexiongdi.trucker:id/off_newmsg").click()
     # 点击第二个按钮，打开第二个开关
-    self.driver.find_element("id","com.kachexiongdi.trucker:id/off_push_notification").click()
+    self.driver.find_element("id", "com.kachexiongdi.trucker:id/off_push_notification").click()
     # 点击返回按钮，返回至运单消息页
-    self.driver.find_element("xpath","//*[@text='消息设置' and contains(@resource-id, "
-                                      "'com.kachexiongdi.trucker:id/tb_center_title')]/../android.widget"
-                                      ".ImageButton").click()
+    self.driver.back()
     # 点击返回按钮，通过找到他的兄弟元素，再定位到他
-    self.driver.find_element("xpath","//*[@text='运单消息' and contains(@resource-id, "
-                                      "'com.kachexiongdi.trucker:id/tb_center_title')]/../android.widget"
-                                      ".ImageButton").click()
+    self.driver.back()
+    # self.driver.find_element("xpath", "//*[@text='运单消息' and contains(@resource-id, "
+    #                                   "'com.kachexiongdi.trucker:id/tb_center_title')]/../android.widget"
+    #                                   ".ImageButton").click()
     # 点击我的钱包
-    self.driver.find_element("xpath","//*[@text='我的钱包' and contains(@resource-id, "
+    # 点击我的钱包
+    self.driver.find_element("xpath", "//*[@text='我的钱包' and contains(@resource-id, "
                                       "'com.kachexiongdi.trucker:id/tv_my_news')]").click()
     # 点击返回按钮，通过找到他的兄弟元素，再定位到他
-    self.driver.find_element("xpath","//*[@text='我的钱包' and contains(@resource-id, "
-                                      "'com.kachexiongdi.trucker:id/tb_center_title')]/../android.widget"
-                                      ".ImageButton").click()
+    self.driver.keyevent(4)
+
     # 点击货源消息
-    self.driver.find_element("xpath","//*[@text='货源消息' and contains(@resource-id, "
+    self.driver.find_element("xpath", "//*[@text='货源消息' and contains(@resource-id, "
                                       "'com.kachexiongdi.trucker:id/tv_my_news')]").click()
     # 点击返回按钮，通过找到他的兄弟元素，再定位到他
-    self.driver.find_element("xpath","//*[@text='货源消息' and contains(@resource-id, "
-                                      "'com.kachexiongdi.trucker:id/tb_center_title')]/../android.widget"
-                                      ".ImageButton").click()
+    self.driver.keyevent(4)
     # 点击系统消息
-    self.driver.find_element("xpath","//*[@text='系统消息' and contains(@resource-id, "
+    self.driver.find_element("xpath", "//*[@text='系统消息' and contains(@resource-id, "
                                       "'com.kachexiongdi.trucker:id/tv_my_news')]").click()
     # 点击返回按钮，通过找到他的兄弟元素，再定位到他
-    self.driver.find_element("xpath","//*[@text='系统消息' and contains(@resource-id, "
-                                      "'com.kachexiongdi.trucker:id/tb_center_title')]/../android.widget"
-                                      ".ImageButton").click()
+    self.driver.keyevent(4)
     # 点击车队消息
-    self.driver.find_element("xpath","//*[@text='车队消息' and contains(@resource-id, "
+    self.driver.find_element("xpath", "//*[@text='车队消息' and contains(@resource-id, "
                                       "'com.kachexiongdi.trucker:id/tv_my_news')]").click()
     # 点击返回按钮，通过找到他的兄弟元素，再定位到他
-    self.driver.find_element("xpath","//*[@text='车队消息' and contains(@resource-id, "
-                                      "'com.kachexiongdi.trucker:id/tb_center_title')]/../android.widget"
-                                      ".ImageButton").click()
+    self.driver.keyevent(4)
     # 点击返回按钮，通过找到他的兄弟元素，再定位到他
-    self.driver.find_element("xpath","//*[@text='消息' and contains(@resource-id, "
-                                      "'com.kachexiongdi.trucker:id/tb_center_title')]/../android.widget"
-                                      ".ImageButton").click()
+    self.driver.keyevent(4)

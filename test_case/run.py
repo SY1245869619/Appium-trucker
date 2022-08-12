@@ -7,17 +7,23 @@
 @time: 2022/5/14 0:18
 """
 import os
+import sys
 import time
 import pytest
-
+curPath = os.path.abspath(os.path.dirname(__file__))
+# print(curPath)
+rootPath = os.path.split(curPath)[0]
+# print(rootPath)
+sys.path.append(rootPath)
 
 def run_main():
     # 测试用例文件路径——参考具体项目路径
     test_case = r'test_trucker_process.py'
-    # html报告命名
+    # html报告命名，当前时间+.html
     name_html = time.strftime('%Y_%m_%d_%H', time.localtime(time.time())) + '.html'
     # html报告输出路径——参考具体项目路径
-    report_path = os.path.join(r'Resources\Appium-trucker\test_case', name_html)
+    report_path = os.path.join(r'{}\Pytest-Html'.format(rootPath), name_html)
+    print(report_path)
     # 通过python代码执行pytest命令行方式
     pytest.main(['-v', '--html={}'.format(report_path), '--self-contained-html', test_case])
 
